@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Turno ao Vivo — GiroPro</title>
+    <meta name="description" content="Copiloto financeiro em tempo real para motoristas de aplicativo." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="turno.css" />
+</head>
+
+<body>
+
+    <!-- ==================== TELA INICIAL (PRÉ-TURNO) ==================== -->
+    <div id="screen-pre" class="screen active">
+        <div class="pre-container">
+            <!-- Header -->
+            <div class="pre-header">
+                <a href="index.html" class="back-btn">← Voltar</a>
+                <div class="pre-brand">
+                    <a href="index.html" class="nav-brand" style="padding: 0; background: transparent; border: none;">
+                        <div class="brand-logo sm">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 2L20 7V17L12 22L4 17V7L12 2Z" stroke="currentColor" stroke-width="2.5"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M12 6V18M8 10L12 14L16 10" stroke="currentColor" stroke-width="2.5"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                        <div class="brand-showcase sm">
+                            <span class="brand-name sm">Giro<span class="brand-name-accent">Pro</span></span>
+                        </div>
+                    </a>
+                </div>
+                <button class="icon-btn" onclick="openSettings()">⚙️</button>
+            </div>
+
+            <!-- Greeting -->
+            <div class="pre-greeting">
+                <p class="greeting-time" id="greeting-time">Bom dia</p>
+                <h1 class="greeting-name">Pronto para lucrar?</h1>
+                <p class="greeting-sub">Configure seu turno e acompanhe cada centavo em tempo real.</p>
+            </div>
+
+            <!-- Stats rápidas do dia -->
+            <div class="pre-stats">
+                <div class="pre-stat-card">
+                    <span class="psc-label">Lucro ontem</span>
+                    <span class="psc-value green" id="pre-lucro-ontem">R$ 0</span>
+                </div>
+                <div class="pre-stat-card">
+                    <span class="psc-label">Melhor dia</span>
+                    <span class="psc-value accent" id="pre-melhor-dia">R$ 0</span>
+                </div>
+                <div class="pre-stat-card">
+                    <span class="psc-label">Média/dia</span>
+                    <span class="psc-value" id="pre-media-dia">R$ 0</span>
+                </div>
+            </div>
+
+            <!-- Meta do dia -->
+            <div class="meta-setup-card">
+                <div class="meta-setup-header">
+                    <span class="meta-setup-icon">🎯</span>
+                    <div>
+                        <h3>Meta do Turno</h3>
+                        <p>Quanto você quer lucrar hoje?</p>
+                    </div>
+                </div>
+                <div class="meta-input-row">
+                    <span class="meta-currency">R$</span>
+                    <input type="number" id="meta-dia-valor" value="300" class="meta-big-input" placeholder="300" />
+                </div>
+                <div class="meta-presets">
+                    <button class="meta-preset" onclick="setMeta(150)">R$150</button>
+                    <button class="meta-preset" onclick="setMeta(200)">R$200</button>
+                    <button class="meta-preset" onclick="setMeta(300)">R$300</button>
+                    <button class="meta-preset" onclick="setMeta(500)">R$500</button>
+                </div>
+            </div>
+
+            <!-- Configuração rápida -->
+            <div class="quick-config-card">
+                <h3 class="qcc-title">⚡ Configuração do Carro</h3>
+                <div class="qcc-grid">
+                    <div class="qcc-item">
+                        <label>Combustível (R$/L)</label>
+                        <input type="number" id="cfg-combustivel" value="6.20" step="0.10" class="qcc-input" />
+                    </div>
+                    <div class="qcc-item">
+                        <label>Consumo (km/L)</label>
+                        <input type="number" id="cfg-consumo" value="10" class="qcc-input" />
+                    </div>
+                    <div class="qcc-item">
+                        <label>Taxa do app (%)</label>
+                        <input type="number" id="cfg-taxa" value="25" class="qcc-input" />
+                    </div>
+                    <div class="qcc-item">
+                        <label>Manutenção (R$/km)</label>
+                        <input type="number" id="cfg-manutencao" value="0.08" step="0.01" class="qcc-input" />
+                    </div>
+                </div>
+            </div>
+
+            <!-- Botão INICIAR TURNO -->
+            <button class="btn-start-shift" id="btn-start" onclick="startShift()">
+                <span class="btn-start-icon">▶</span>
+                <span class="btn-start-text">INICIAR TURNO</span>
+                <span class="btn-start-sub">Toque para começar</span>
+            </button>
+
+            <!-- Avaliador de corrida -->
+            <div class="ride-evaluator-card">
+                <h3>🤔 Vale a pena essa corrida?</h3>
+                <p class="re-desc">Avalie antes de aceitar</p>
+                <div class="re-form">
+                    <div class="re-field">
+                        <label>Valor da corrida (R$)</label>
+                        <input type="number" id="re-valor" placeholder="25.00" step="0.50" class="re-input"
+                            oninput="evaluateRide()" />
+                    </div>
+                    <div class="re-field">
+                        <label>Distância até passageiro (km)</label>
+                        <input type="number" id="re-dist-passageiro" placeholder="2.5" step="0.5" class="re-input"
+                            oninput="evaluateRide()" />
+                    </div>
+                    <div class="re-field">
+                        <label>Distância da viagem (km)</label>
+                        <input type="number" id="re-dist-viagem" placeholder="8.0" step="0.5" class="re-input"
+                            oninput="evaluateRide()" />
+                    </div>
+                </div>
+                <div id="re-result" class="re-result hidden">
+                    <div class="re-verdict" id="re-verdict"></div>
+                    <div class="re-details" id="re-details"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== TELA TURNO ATIVO ==================== -->
+    <div id="screen-active" class="screen">
+        <!-- Status bar -->
+        <div class="shift-statusbar">
+            <div class="sb-left">
+                <div class="sb-live-dot"></div>
+                <span class="sb-live-text">AO VIVO</span>
+            </div>
+            <div class="sb-center">
+                <span class="sb-timer" id="shift-timer">00:00:00</span>
+            </div>
+            <div class="sb-right">
+                <button class="sb-mode-btn" id="btn-driving-mode" onclick="toggleDrivingMode()">🚗</button>
+            </div>
+        </div>
+
+        <!-- MODO DIREÇÃO (números gigantes) -->
+        <div id="driving-mode-overlay" class="driving-mode hidden">
+            <div class="dm-header">
+                <span class="dm-label">MODO DIREÇÃO</span>
+                <button class="dm-close" onclick="toggleDrivingMode()">✕</button>
+            </div>
+            <div class="dm-main">
+                <div class="dm-metric">
+                    <div class="dm-value" id="dm-lucro">R$ 0,00</div>
+                    <div class="dm-label-text">Lucro do Turno</div>
+                </div>
+            </div>
+            <div class="dm-secondary">
+                <div class="dm-sec-item">
+                    <div class="dm-sec-value" id="dm-hora">R$ 0/h</div>
+                    <div class="dm-sec-label">por hora</div>
+                </div>
+                <div class="dm-sec-item">
+                    <div class="dm-sec-value" id="dm-km">R$ 0/km</div>
+                    <div class="dm-sec-label">por km</div>
+                </div>
+            </div>
+            <div class="dm-meta-bar">
+                <div class="dm-meta-progress" id="dm-meta-bar" style="width:0%"></div>
+            </div>
+            <div class="dm-meta-text" id="dm-meta-text">Meta: R$ 0 restante</div>
+        </div>
+
+        <!-- Conteúdo principal do turno -->
+        <div class="shift-content" id="shift-content">
+
+            <!-- Meta Progress -->
+            <div class="goal-card" id="goal-card">
+                <div class="goal-header">
+                    <div class="goal-info">
+                        <span class="goal-label">Meta do Turno</span>
+                        <span class="goal-target" id="goal-target">R$ 300</span>
+                    </div>
+                    <div class="goal-pct" id="goal-pct">0%</div>
+                </div>
+                <div class="goal-bar-bg">
+                    <div class="goal-bar-fill" id="goal-bar" style="width:0%"></div>
+                </div>
+                <div class="goal-footer">
+                    <span class="goal-current" id="goal-current">R$ 0,00 conquistados</span>
+                    <span class="goal-remaining" id="goal-remaining">Falta R$ 300,00</span>
+                </div>
+                <!-- Milestone celebration -->
+                <div class="milestone-badge hidden" id="milestone-badge">🎉 <span id="milestone-text"></span></div>
+            </div>
+
+            <!-- Lucro Principal (HERO COCKPIT) -->
+            <div class="profit-hero-cockpit">
+                <div class="phc-label">LUCRO LÍQUIDO DO TURNO</div>
+                <div class="phc-value" id="profit-value">R$ 0,00</div>
+                <div class="phc-status-wrap">
+                    <div class="phc-status-badge" id="profit-status-badge">
+                        <span class="phc-dot"></span>
+                        <span id="profit-status-text">ANALISANDO TURNO...</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Grid de Custos em Tempo Real -->
+            <div class="cockpit-grid">
+                <div class="cg-card total-revenue">
+                    <span class="cg-label">RECEITA BRUTA</span>
+                    <div class="cg-value" id="rt-receita">R$ 0,00</div>
+                    <div class="cg-progress">
+                        <div class="cg-progress-fill" style="width: 100%"></div>
+                    </div>
+                </div>
+                <div class="cg-card expense">
+                    <span class="cg-label">COMBUSTÍVEL</span>
+                    <div class="cg-value" id="rt-combustivel">R$ 0,00</div>
+                    <div class="cg-progress">
+                        <div class="cg-progress-fill fuel" style="width: 40%"></div>
+                    </div>
+                </div>
+                <div class="cg-card expense">
+                    <span class="cg-label">DEPRECIAÇÃO</span>
+                    <div class="cg-value" id="rt-depreciacao">R$ 0,00</div>
+                </div>
+                <div class="cg-card expense">
+                    <span class="cg-label">MANUTENÇÃO</span>
+                    <div class="cg-value" id="rt-manutencao">R$ 0,00</div>
+                </div>
+            </div>
+
+            <!-- Métricas de performance -->
+            <div class="perf-row">
+                <div class="perf-card">
+                    <div class="perf-icon">⏱️</div>
+                    <div class="perf-value" id="perf-hora">R$ 0/h</div>
+                    <div class="perf-label">Lucro/hora</div>
+                    <div class="perf-indicator" id="perf-hora-ind">—</div>
+                </div>
+                <div class="perf-card">
+                    <div class="perf-icon">📍</div>
+                    <div class="perf-value" id="perf-km">R$ 0/km</div>
+                    <div class="perf-label">Lucro/km</div>
+                    <div class="perf-indicator" id="perf-km-ind">—</div>
+                </div>
+                <div class="perf-card">
+                    <div class="perf-icon">🚗</div>
+                    <div class="perf-value" id="perf-km-total">0 km</div>
+                    <div class="perf-label">KM rodados</div>
+                    <div class="perf-indicator" id="perf-km-total-ind">—</div>
+                </div>
+                <div class="perf-card">
+                    <div class="perf-icon">🎯</div>
+                    <div class="perf-value" id="perf-corridas">0</div>
+                    <div class="perf-label">Corridas</div>
+                    <div class="perf-indicator" id="perf-corridas-ind">—</div>
+                </div>
+            </div>
+
+            <!-- Insight Engine -->
+            <div class="insight-engine-card" id="insight-card">
+                <div class="ie-header">
+                    <span class="ie-icon" id="ie-icon">🧠</span>
+                    <span class="ie-label">Copiloto Financeiro</span>
+                    <span class="ie-badge">LIVE</span>
+                </div>
+                <p class="ie-text" id="ie-text">Iniciando análise do turno...</p>
+                <div class="ie-actions" id="ie-actions"></div>
+            </div>
+
+            <!-- Adicionar corrida -->
+            <div class="add-ride-section">
+                <h3 class="ars-title">+ Registrar Corrida</h3>
+                <div class="ars-form">
+                    <div class="ars-field">
+                        <label>Plataforma</label>
+                        <select id="ride-plataforma" class="ars-select">
+                            <option value="uber">Uber</option>
+                            <option value="99">99</option>
+                            <option value="indrive">InDrive</option>
+                            <option value="particular">Particular</option>
+                        </select>
+                    </div>
+                    <div class="ars-field">
+                        <label>Valor (R$)</label>
+                        <input type="number" id="ride-valor" class="ars-input" placeholder="0,00" step="0.50" />
+                    </div>
+                    <div class="ars-field">
+                        <label>KM rodados</label>
+                        <input type="number" id="ride-km" class="ars-input" placeholder="0" />
+                    </div>
+                    <button class="btn-add-ride" onclick="addRide()">
+                        <span>✓</span> Adicionar
+                    </button>
+                </div>
+            </div>
+
+            <!-- Histórico de corridas do turno -->
+            <div class="shift-rides-section" id="shift-rides-section">
+                <h3 class="srs-title">Corridas do Turno</h3>
+                <div id="shift-rides-list" class="shift-rides-list">
+                    <div class="empty-rides">Nenhuma corrida registrada ainda</div>
+                </div>
+            </div>
+
+            <!-- Avaliador rápido (durante turno) -->
+            <div class="ride-evaluator-card compact">
+                <h3>⚡ Vale essa corrida?</h3>
+                <div class="re-form compact">
+                    <input type="number" id="re-valor-active" placeholder="R$ valor" step="0.50"
+                        class="re-input-compact" oninput="evaluateRideActive()" />
+                    <input type="number" id="re-dist-passageiro-active" placeholder="km até passageiro" step="0.5"
+                        class="re-input-compact" oninput="evaluateRideActive()" />
+                    <input type="number" id="re-dist-viagem-active" placeholder="km da viagem" step="0.5"
+                        class="re-input-compact" oninput="evaluateRideActive()" />
+                </div>
+                <div id="re-result-active" class="re-result hidden"></div>
+            </div>
+
+            <!-- Encerrar turno -->
+            <button class="btn-end-shift" onclick="endShift()">
+                ⏹ Encerrar Turno
+            </button>
+
+        </div>
+    </div>
+
+    <!-- ==================== TELA RESUMO DO TURNO ==================== -->
+    <div id="screen-summary" class="screen">
+        <div class="summary-container">
+            <div class="summary-header">
+                <div class="summary-trophy">🏆</div>
+                <h1 class="summary-title">Turno Encerrado!</h1>
+                <p class="summary-date" id="summary-date"></p>
+            </div>
+
+            <!-- Lucro destaque -->
+            <div class="summary-profit-card">
+                <div class="spc-label">Lucro Real do Turno</div>
+                <div class="spc-value" id="summary-lucro">R$ 0,00</div>
+                <div class="spc-meta" id="summary-meta-status"></div>
+            </div>
+
+            <!-- Métricas do resumo -->
+            <div class="summary-metrics-grid">
+                <div class="smg-item">
+                    <div class="smg-icon">💵</div>
+                    <div class="smg-label">Receita Bruta</div>
+                    <div class="smg-value" id="sum-receita">R$ 0,00</div>
+                </div>
+                <div class="smg-item">
+                    <div class="smg-icon">💸</div>
+                    <div class="smg-label">Total Custos</div>
+                    <div class="smg-value red" id="sum-custos">R$ 0,00</div>
+                </div>
+                <div class="smg-item">
+                    <div class="smg-icon">⏱️</div>
+                    <div class="smg-label">Tempo rodado</div>
+                    <div class="smg-value" id="sum-tempo">0h 0min</div>
+                </div>
+                <div class="smg-item">
+                    <div class="smg-icon">🚗</div>
+                    <div class="smg-label">KM rodados</div>
+                    <div class="smg-value" id="sum-km">0 km</div>
+                </div>
+                <div class="smg-item">
+                    <div class="smg-icon">⏱️</div>
+                    <div class="smg-label">Lucro/hora</div>
+                    <div class="smg-value" id="sum-hora">R$ 0/h</div>
+                </div>
+                <div class="smg-item">
+                    <div class="smg-icon">📍</div>
+                    <div class="smg-label">Lucro/km</div>
+                    <div class="smg-value" id="sum-km-lucro">R$ 0/km</div>
+                </div>
+                <div class="smg-item">
+                    <div class="smg-icon">🎯</div>
+                    <div class="smg-label">Corridas</div>
+                    <div class="smg-value" id="sum-corridas">0</div>
+                </div>
+                <div class="smg-item">
+                    <div class="smg-icon">⛽</div>
+                    <div class="smg-label">Combustível</div>
+                    <div class="smg-value red" id="sum-combustivel">R$ 0,00</div>
+                </div>
+            </div>
+
+            <!-- Insight do turno -->
+            <div class="summary-insight" id="summary-insight">
+                <span class="si-icon">🧠</span>
+                <p id="summary-insight-text"></p>
+            </div>
+
+            <!-- Ações -->
+            <div class="summary-actions">
+                <button class="btn-new-shift" onclick="resetToPreShift()">
+                    ▶ Novo Turno
+                </button>
+                <a href="index.html?view=dashboard" class="btn-go-dashboard">
+                    📊 Ver Dashboard
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== SETTINGS MODAL ==================== -->
+    <div id="settings-modal" class="modal-overlay hidden" onclick="closeSettings()">
+        <div class="settings-modal" onclick="event.stopPropagation()">
+            <div class="sm-header">
+                <h3>Configurações Avançadas</h3>
+                <button onclick="closeSettings()" class="sm-close">✕</button>
+            </div>
+            <div class="sm-body">
+                <div class="sm-section">
+                    <h4>🚗 Veículo</h4>
+                    <div class="sm-field">
+                        <label>Valor do carro (R$)</label>
+                        <input type="number" id="cfg-valor-carro" value="45000" class="sm-input" />
+                    </div>
+                    <div class="sm-field">
+                        <label>Vida útil (anos)</label>
+                        <input type="number" id="cfg-vida-util" value="5" class="sm-input" />
+                    </div>
+                    <div class="sm-field">
+                        <label>KM anual estimado</label>
+                        <input type="number" id="cfg-km-anual" value="36000" class="sm-input" />
+                    </div>
+                </div>
+                <div class="sm-section">
+                    <h4>💰 Custos Fixos Mensais</h4>
+                    <div class="sm-field">
+                        <label>Seguro (R$/mês)</label>
+                        <input type="number" id="cfg-seguro-mensal" value="280" class="sm-input" />
+                    </div>
+                    <div class="sm-field">
+                        <label>Horas trabalhadas/mês</label>
+                        <input type="number" id="cfg-horas-mes" value="176" class="sm-input" />
+                    </div>
+                </div>
+            </div>
+            <button class="btn-save-settings" onclick="saveSettings()">Salvar Configurações</button>
+        </div>
+    </div>
+
+    <!-- Bottom Nav (Mobile) -->
+    <nav class="bottom-nav">
+        <a href="index.html" class="bottom-nav-item">
+            <span>📊</span>
+            <span>Dashboard</span>
+        </a>
+        <a href="index.html" class="bottom-nav-item">
+            <span>📋</span>
+            <span>Lançamentos</span>
+        </a>
+
+        <!-- Central Special Button (Contextual) -->
+        <a href="#" class="bottom-nav-item nav-special active" id="bn-turno-control">
+            <span>▶</span>
+            <span>Turno</span>
+        </a>
+
+        <a href="index.html" class="bottom-nav-item">
+            <span>📈</span>
+            <span>Relatórios</span>
+        </a>
+        <a href="index.html" class="bottom-nav-item" onclick="openSettings(); return false;">
+            <span>⚙️</span>
+            <span>Ajustes</span>
+        </a>
+    </nav>
+
+    <!-- Toast notification -->
+    <div id="toast" class="toast hidden"></div>
+
+    <!-- GiroPro Intelligence Suite -->
+    <script src="features/copilot/core/engine.js"></script>
+    <script src="features/copilot/core/decision.js"></script>
+    <script src="features/earnings-alert-engine/core/engine.js"></script>
+    <script src="features/copilot/copilot.module.js"></script>
+
+    <script src="turno.js"></script>
+</body>
+
+</html>

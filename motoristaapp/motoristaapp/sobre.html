@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="pt-br" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre o GiroPro | A Jornada de Rodrigo Henrique</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <style>
+        .subpage-hero {
+            padding: 160px 20px 80px;
+            text-align: center;
+            background: radial-gradient(circle at 50% 0%, rgba(34, 211, 238, 0.1) 0%, transparent 70%);
+        }
+
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .founder-section {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 60px;
+            align-items: center;
+            margin-top: 80px;
+            padding: 60px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 40px;
+            backdrop-filter: blur(20px);
+        }
+
+        .founder-img-placeholder {
+            width: 100%;
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+            color: #000;
+            font-weight: 800;
+            box-shadow: 0 20px 40px rgba(34, 211, 238, 0.2);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+            margin-top: 60px;
+        }
+
+        .about-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 24px;
+            transition: var(--transition);
+        }
+
+        .about-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        @media (max-width: 768px) {
+            .founder-section {
+                grid-template-columns: 1fr;
+                text-align: center;
+                padding: 40px 20px;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body id="landing-page">
+    <nav class="landing-nav">
+        <a href="index.html" class="nav-brand">
+            <div class="brand-logo">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L20 7V17L12 22L4 17V7L12 2Z" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M12 6V18M8 10L12 14L16 10" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+            </div>
+            <div class="brand-showcase">
+                <span class="brand-name">Giro<span class="brand-name-accent">Pro</span></span>
+                <span class="brand-tagline">Intelligence</span>
+            </div>
+        </a>
+
+        <button class="menu-toggle" aria-label="Abrir Menu" onclick="toggleMobileMenu()">
+            <span>☰</span>
+        </button>
+
+        <ul class="nav-menu" id="nav-menu">
+            <li><a href="index.html#solucoes">Recursos</a></li>
+            <li><a href="index.html#planos">Planos</a></li>
+            <li><a href="sobre.html">Sobre</a></li>
+            <li><a href="index.html#depoimentos">Depoimentos</a></li>
+            <li class="mobile-only"><button class="btn-primary" style="width:100%"
+                    onclick="window.location.href='index.html'">Começar Grátis</button></li>
+        </ul>
+
+        <div class="nav-actions">
+            <a href="index.html" class="btn-ghost"
+                style="text-decoration: none; display: flex; align-items: center; justify-content: center;">Entrar</a>
+            <button class="btn-primary" onclick="window.location.href='index.html'">Começar Grátis</button>
+        </div>
+    </nav>
+
+    <section class="subpage-hero">
+        <div class="hero-eyebrow">Nossa Missão</div>
+        <h1 class="hero-title" style="margin-bottom: 24px;">Tecnologia com<br /><span class="gradient-text">Propósito
+                Real</span></h1>
+        <p class="hero-subtitle" style="margin: 0 auto;">Nascemos da necessidade de transformar a intuição do motorista
+            em precisão matemática.</p>
+    </section>
+
+    <section class="about-content">
+        <div class="about-grid">
+            <div class="about-card">
+                <h3 style="color: var(--accent); margin-bottom: 20px;">Por que o GiroPro?</h3>
+                <p style="color: var(--text-secondary); line-height: 1.6;">O mercado de aplicativos de transporte
+                    saturou. Hoje, não basta apenas "rodar". É preciso gerir como uma empresa. O GiroPro é o ERP do
+                    motorista moderno.</p>
+            </div>
+            <div class="about-card">
+                <h3 style="color: var(--accent); margin-bottom: 20px;">Nossa Visão</h3>
+                <p style="color: var(--text-secondary); line-height: 1.6;">Ser a plataforma líder em inteligência
+                    financeira para a Gig Economy, garantindo que o trabalhador de plataforma tenha total clareza sobre
+                    sua rentabilidade.</p>
+            </div>
+        </div>
+
+        <div class="founder-section">
+            <div class="founder-img-placeholder">RH</div>
+            <div class="founder-info">
+                <div class="hero-eyebrow" style="background: rgba(34, 211, 238, 0.1);">Liderança Técnica</div>
+                <h2 style="font-size: 32px; font-weight: 800; margin: 16px 0;">Rodrigo Henrique</h2>
+                <p
+                    style="font-size: 14px; color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 24px;">
+                    Fundador & Arquiteto de Software</p>
+                <p style="color: var(--text-secondary); line-height: 1.8; font-size: 17px;">
+                    Com uma visão voltada para a eficiência econômica, Rodrigo Henrique projetou o GiroPro para ser mais
+                    que um rastreador de despesas. Sua arquitetura combina análise de dados em tempo real com UX focada
+                    em resultados rápidos, permitindo que qualquer motorista tome decisões de nível executivo enquanto
+                    está no volante.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="landing-footer">
+        <div class="footer-container">
+            <div class="footer-main">
+                <div class="footer-brand">
+                    <div class="brand-logo sm">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L20 7V17L12 22L4 17V7L12 2Z" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M12 6V18M8 10L12 14L16 10" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                    <span class="brand-name sm" style="font-size: 20px;">Giro<span
+                            style="color: var(--accent);">Pro</span></span>
+                </div>
+                <p class="footer-tagline">O GiroPro é a inteligência financeira definitiva para quem faz o Brasil se
+                    mover.
+                    Transformamos dados complexos em lucro real para motoristas de aplicativos.</p>
+                <div class="footer-institutional">
+                    <p>Nossa missão é garantir que cada quilômetro rodado seja uma semente para sua liberdade
+                        financeira. Dados
+                        precisos, decisões inteligentes.</p>
+                </div>
+                <div class="footer-social">
+                    <a href="#" class="social-link" title="Instagram">📸</a>
+                    <a href="#" class="social-link" title="YouTube">📺</a>
+                    <a href="#" class="social-link" title="WhatsApp">💬</a>
+                    <a href="#" class="social-link" title="LinkedIn">🔗</a>
+                </div>
+            </div>
+
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Produto</h4>
+                    <ul>
+                        <li><a href="index.html#solucoes">Recursos Premium</a></li>
+                        <li><a href="index.html#planos">Planos PRO</a></li>
+                        <li><a href="index.html#simulador">Simuladores de Lucro</a></li>
+                        <li><a href="turno.html">Cockpit em Tempo Real</a></li>
+                        <li><a href="index.html#view-metas">Inteligência de Metas</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Recursos</h4>
+                    <ul>
+                        <li><a href="recursos.html">Central de Ajuda</a></li>
+                        <li><a href="recursos.html">Blog do Motorista</a></li>
+                        <li><a href="recursos.html">Guia de Custos 2024</a></li>
+                        <li><a href="recursos.html">Planilha de Depreciação</a></li>
+                        <li><a href="recursos.html">Comparador de Apps</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Empresa</h4>
+                    <ul>
+                        <li><a href="sobre.html">Sobre o GiroPro</a></li>
+                        <li><a href="legal.html">Termos e Privacidade</a></li>
+                        <li><a href="legal.html">Segurança Cibernética</a></li>
+                        <li><a href="legal.html">Transparência de Dados</a></li>
+                        <li><a href="sobre.html">Imprensa</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Suporte</h4>
+                    <ul>
+                        <li><a href="contato.html">Falar com Consultor</a></li>
+                        <li><a href="contato.html">Comunidade VIP Telegram</a></li>
+                        <li><a href="contato.html">Parcerias Estratégicas</a></li>
+                        <li><a href="contato.html">Canal de Ética</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="fb-left">
+                <p>&copy; 2026 GiroPro Intelligence Systems. Todos os direitos reservados.</p>
+                <p class="footer-location">📍 Hub de Inovação — São Paulo, SP | Atendimento Nacional.</p>
+                <p style="font-size: 11px; margin-top: 8px; opacity: 0.6;">O uso deste software está sujeito aos termos
+                    de
+                    serviço. Dados criptografados ponta-a-ponta.</p>
+            </div>
+            <div class="fb-right">
+                <div class="footer-trust">
+                    <span class="trust-badge">🔒 AES-256 Encryption</span>
+                    <span class="trust-badge">⚡ Ultra-Low Latency</span>
+                </div>
+                <p class="dev-credit">Arquitetado e desenvolvido por <strong>Rodrigo Henrique</strong></p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        function toggleMobileMenu() {
+            const navMenu = document.getElementById('nav-menu');
+            const menuToggle = document.querySelector('.menu-toggle');
+            if (navMenu) navMenu.classList.toggle('active');
+            if (menuToggle) menuToggle.classList.toggle('active');
+        }
+    </script>
+</body>
+
+</html>

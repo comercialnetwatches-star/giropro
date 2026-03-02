@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <div id="error-output">No errors yet</div>
+    <script>
+        window.onerror = function (msg, url, lineNo, columnNo, error) {
+            document.getElementById('error-output').innerText = 'Error: ' + msg + ' at line ' + lineNo;
+            return false;
+        };
+    </script>
+    <script src="app.js"></script>
+    <script>
+        // if it reaches here, app.js parsed fine
+        if (document.getElementById('error-output').innerText === 'No errors yet') {
+            document.getElementById('error-output').innerText = 'Parsed successfully!';
+        }
+    </script>
+</body>
+
+</html>

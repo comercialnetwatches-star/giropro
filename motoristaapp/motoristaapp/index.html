@@ -1,0 +1,1205 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GiroPro — Controle Financeiro para Motoristas</title>
+  <meta name="description"
+    content="O app financeiro mais completo para motoristas de Uber, 99, InDrive e similares. Saiba exatamente quanto você está lucrando." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+
+<body>
+
+  <!-- ==================== LANDING PAGE ==================== -->
+  <div id="landing-page" class="page active">
+
+    <!-- NAV -->
+    <nav class="landing-nav">
+      <a href="index.html" class="nav-brand">
+        <div class="brand-logo">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2L20 7V17L12 22L4 17V7L12 2Z" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+              stroke-linejoin="round" />
+            <path d="M12 6V18M8 10L12 14L16 10" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+        </div>
+        <div class="brand-showcase">
+          <span class="brand-name">Giro<span class="brand-name-accent">Pro</span></span>
+          <span class="brand-tagline">Intelligence</span>
+        </div>
+      </a>
+
+      <button class="menu-toggle" aria-label="Abrir Menu" onclick="toggleMobileMenu()">
+        <span>☰</span>
+      </button>
+
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="#solucoes">Recursos</a></li>
+        <li><a href="#planos">Planos</a></li>
+        <li><a href="sobre.html">Sobre</a></li>
+        <li><a href="#depoimentos">Depoimentos</a></li>
+        <li class="mobile-only"><button class="btn-primary" style="width:100%" onclick="showLogin()">Começar
+            Grátis</button></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="btn-ghost" onclick="showLogin()">Entrar</button>
+        <button class="btn-primary" onclick="showLogin()">Começar Grátis</button>
+      </div>
+    </nav>
+
+    <!-- PREMIUM HERO -->
+    <section class="hero-split">
+      <div class="hero-container">
+        <div class="hero-content">
+          <div class="badge-premium">Inteligência Financeira Autoritária</div>
+          <h1 class="hero-main-title">
+            Não apenas dirija.<br>
+            <span class="text-gold">Gerencie seu Lucro.</span>
+          </h1>
+          <p class="hero-description">
+            O GiroPro é a plataforma definitiva de engenharia financeira para motoristas que tratam o volante como um
+            negócio de alta performance. Saiba o custo real de cada KM e proteja sua margem.
+          </p>
+          <div class="hero-group-btns">
+            <button class="btn-premium-solid" onclick="showLogin()">Iniciar Consultoria Gratuita</button>
+            <button class="btn-premium-outline" onclick="showLogin()">Analisar Demonstração</button>
+          </div>
+          <div class="hero-trust-indicators">
+            <div class="trust-pill"><span>✓</span> 12k+ Gestores</div>
+            <div class="trust-pill"><span>✓</span> ROI 20:1</div>
+            <div class="trust-pill"><span>✓</span> Tecnologia AES-256</div>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="profit-cockpit">
+            <div class="cockpit-header">
+              <div class="live-indicator">
+                <span class="pulse-dot"></span>
+                SESSÃO ATIVA
+              </div>
+              <div class="cockpit-timer">04:12:45</div>
+            </div>
+
+            <div class="cockpit-main">
+              <span class="main-label">Lucro Líquido (Real)</span>
+              <div class="main-value">R$ 184,20</div>
+              <div class="trend-indicator plus">+12% vs. ontem</div>
+            </div>
+
+            <div class="cockpit-breakdown">
+              <div class="breakdown-item">
+                <small>Faturamento</small>
+                <span>R$ 240,00</span>
+              </div>
+              <div class="breakdown-item">
+                <small>Custos App</small>
+                <span class="text-red">-R$ 55,80</span>
+              </div>
+            </div>
+
+            <div class="cockpit-footer">
+              <div class="progress-container">
+                <div class="progress-labels">
+                  <small>Meta Diária</small>
+                  <small>74%</small>
+                </div>
+                <div class="progress-bar-bg">
+                  <div class="progress-bar-fill" style="width: 74%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- THE TRUST BAR -->
+    <div class="trust-bar">
+      <div class="trust-label">PLATAFORMAS INTEGRALMENTE MONITORADAS:</div>
+      <div class="trust-logos">
+        <span class="logo-item">UBER</span>
+        <span class="logo-item">99 APP</span>
+        <span class="logo-item">INDRIVE</span>
+        <span class="logo-item">LALAMOVE</span>
+      </div>
+    </div>
+
+    <!-- PROBLEM/SOLUTION SPLIT -->
+    <section class="reality-check">
+      <div class="section-badge">O Custo da Ignorância</div>
+      <h2 class="reality-title">Por que 87% dos motoristas<br>estão <span class="text-red">pagando para
+          trabalhar?</span></h2>
+
+      <div class="reality-container">
+        <!-- The Left Side: Confusion -->
+        <div class="reality-side side-trap">
+          <div class="side-header">A Cilada da Intuição</div>
+          <div class="trap-list">
+            <div class="trap-item">
+              <span class="trap-icon">✕</span>
+              <div><strong>Receita Bruta Maquiada</strong> — Focar apenas no que entra, ignorando a saída.</div>
+            </div>
+            <div class="trap-item">
+              <span class="trap-icon">✕</span>
+              <div><strong>Depreciação Invisível</strong> — Seu carro vale menos a cada km; você está provisionado?
+              </div>
+            </div>
+            <div class="trap-item">
+              <span class="trap-icon">✕</span>
+              <div><strong>Taxas Abusivas</strong> — Aceitar corridas que pagam menos que o seu custo p/ km.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- The Right Side: Decision -->
+        <div class="reality-side side-solution">
+          <div class="side-header">A Precisão do GiroPro</div>
+          <div class="solution-list">
+            <div class="sol-item">
+              <span class="sol-icon">✓</span>
+              <div><strong>Fator de Lucro Real</strong> — Saiba o valor líquido no seu bolso em tempo real.</div>
+            </div>
+            <div class="sol-item">
+              <span class="sol-icon">✓</span>
+              <div><strong>Calculadora de Depreciação</strong> — O primeiro app que trata o carro como ativo.</div>
+            </div>
+            <div class="sol-item">
+              <span class="sol-icon">✓</span>
+              <div><strong>Filtro de Viabilidade</strong> — Rejeite o prejuízo. Aceite apenas a rentabilidade.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PILLAR FEATURES - Z PATTERN -->
+    <section class="pillars-section">
+      <!-- Pillar 1 -->
+      <div class="pillar-row">
+        <div class="pillar-content">
+          <span class="pillar-num">01</span>
+          <h3>Engenharia de Turno</h3>
+          <p>Nosso Cockpit não é apenas visual; é estratégico. Ele analisa a densidade de lucro por hora e avisa se sua
+            estratégia está morrendo.</p>
+          <ul class="pillar-bullet">
+            <li>Deteção de declínio de margem</li>
+            <li>Alerta de custo crítico</li>
+          </ul>
+        </div>
+        <div class="pillar-image">
+          <img src="assets/images/imagem1.png" alt="Engenharia de Turno Dashboard" class="mockup-img">
+        </div>
+      </div>
+
+      <!-- Pillar 2 -->
+      <div class="pillar-row reverse">
+        <div class="pillar-content">
+          <span class="pillar-num">02</span>
+          <h3>Simulação de ROI</h3>
+          <p>Antes de mover o carro, saiba se a viagem se paga. Nosso simulador cruza combustível, trânsito e taxas em
+            segundos.</p>
+          <ul class="pillar-bullet">
+            <li>Validação instantânea de lucro</li>
+            <li>Projeção mensal baseada em performance</li>
+          </ul>
+        </div>
+        <div class="pillar-image">
+          <img src="assets/images/imagem2.png" alt="Simulador de ROI Financeiro" class="mockup-img">
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS (SOCIAL PROOF) -->
+    <section class="testimonials-section" id="depoimentos">
+      <div class="testimonials-eyebrow">A Voz de Quem Dirige</div>
+      <h2 class="section-title">Aprovado por milhares de<br />motoristas profissionais</h2>
+
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+          <p class="testimonial-text">"O GiroPro mudou o meu jogo. Eu achava que ganhava R$ 5k limpos, mas depois que vi
+            o custo real e a depreciação, entendi por que o dinheiro não sobrava. Hoje opero com lucro de verdade."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar" style="background: linear-gradient(135deg, #22d3ee, #0ea5e9);">MO</div>
+            <div class="author-info">
+              <span class="author-name">Marcos Oliveira</span>
+              <span class="author-tag">Uber Black & Comfort</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+          <p class="testimonial-text">"O simulador de corridas é fantástico. Leva 2 segundos para eu saber se aquela
+            viagem de 15km paga a manutenção do meu carro ou se é só 'trocar figurinha'. Essencial."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar" style="background: linear-gradient(135deg, #a855f7, #6366f1);">RS</div>
+            <div class="author-info">
+              <span class="author-name">Ricardo Santos</span>
+              <span class="author-tag">Motorista 5.0 ★</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+          <p class="testimonial-text">"Finalmente um app que pensa como a gente. A visão de lucro por hora é o que
+            faltava para eu gerenciar meu tempo. Bati minha meta mensal 4 dias antes com as dicas do GiroPro."</p>
+          <div class="testimonial-author">
+            <div class="author-avatar" style="background: linear-gradient(135deg, #f43f5e, #fb7185);">AP</div>
+            <div class="author-info">
+              <span class="author-name">Ana Paula</span>
+              <span class="author-tag">99 Pop & InDrive</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PREMIUM PRICING -->
+    <section class="pricing-premium" id="planos">
+      <div class="pricing-header">
+        <span class="badge-premium">Invista no seu Futuro</span>
+        <h2 class="reality-title">O custo da precisão é<br>menor que o <span class="text-gold">erro da intuição.</span>
+        </h2>
+      </div>
+
+      <div class="pricing-grid-premium">
+        <!-- Starter -->
+        <div class="price-card-premium">
+          <div class="pcp-header">
+            <h4>Básico</h4>
+            <div class="pcp-price">R$ 0<span>/mês</span></div>
+          </div>
+          <ul class="pcp-features">
+            <li>✓ Dashboard de Receitas</li>
+            <li>✓ Lançamentos Básicos</li>
+            <li>✓ 1 Meta de Faturamento</li>
+          </ul>
+          <button class="btn-premium-outline full-width" onclick="showLogin()">Começar Agora</button>
+        </div>
+
+        <!-- Professional -->
+        <div class="price-card-premium featured">
+          <div class="pcp-badge">RECOMENDADO PARA PROFISSIONAIS</div>
+          <div class="pcp-header">
+            <h4>GiroPro PRO</h4>
+            <div class="pcp-price">R$ 19,90<span>/mês</span></div>
+          </div>
+          <ul class="pcp-features">
+            <li>✓ <strong>Turno ao Vivo (Cockpit)</strong></li>
+            <li>✓ Inteligência de Depreciação</li>
+            <li>✓ Simulador de ROI de Corridas</li>
+            <li>✓ Alertas de Margem Crítica</li>
+            <li>✓ Consultoria via Dados</li>
+          </ul>
+          <button class="btn-premium-solid full-width" onclick="showLogin()">Ativar Gestão Profissional</button>
+          <p class="hero-note" style="margin-top:12px; font-size:10px;">Teste grátis por 7 dias. Cancele quando quiser.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL CONVERSION -->
+    <section class="conversion-section">
+      <div class="conversion-box">
+        <h2 class="fcs-title">Pronto para assumir o<br>comando da sua operação?</h2>
+        <p class="fcs-sub">Junte-se a 12k+ motoristas que transformaram o volante em uma empresa lucrativa.</p>
+        <div class="hero-group-btns">
+          <button class="btn-premium-solid" onclick="showLogin()">Ativar Controle Total Agora</button>
+        </div>
+      </div>
+    </section>
+
+    <footer class="landing-footer">
+      <div class="footer-container">
+        <div class="footer-main">
+          <div class="footer-brand">
+            <div class="brand-logo sm">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2L20 7V17L12 22L4 17V7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+                <path d="M12 6V18M8 10L12 14L16 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </div>
+            <span class="brand-name sm" style="font-size: 20px;">Giro<span
+                style="color: var(--accent);">Pro</span></span>
+          </div>
+          <p class="footer-tagline">O GiroPro é a inteligência financeira definitiva para quem faz o Brasil se mover.
+            Transformamos dados complexos em lucro real para motoristas de aplicativos.</p>
+          <div class="footer-institutional">
+            <p>Nossa missão é garantir que cada quilômetro rodado seja uma semente para sua liberdade financeira. Dados
+              precisos, decisões inteligentes.</p>
+          </div>
+          <div class="footer-social">
+            <a href="#" class="social-link" title="Instagram">📸</a>
+            <a href="#" class="social-link" title="YouTube">📺</a>
+            <a href="#" class="social-link" title="WhatsApp">💬</a>
+            <a href="#" class="social-link" title="LinkedIn">🔗</a>
+          </div>
+        </div>
+
+        <div class="footer-grid">
+          <div class="footer-col">
+            <h4>Produto</h4>
+            <ul>
+              <li><a href="#solucoes">Recursos Premium</a></li>
+              <li><a href="#planos">Planos PRO</a></li>
+              <li><a href="#simulador">Simuladores de Lucro</a></li>
+              <li><a href="turno.html">Cockpit em Tempo Real</a></li>
+              <li><a href="index.html#view-metas">Inteligência de Metas</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Recursos</h4>
+            <ul>
+              <li><a href="recursos.html">Central de Ajuda</a></li>
+              <li><a href="recursos.html">Blog do Motorista</a></li>
+              <li><a href="recursos.html">Guia de Custos 2024</a></li>
+              <li><a href="recursos.html">Planilha de Depreciação</a></li>
+              <li><a href="recursos.html">Comparador de Apps</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Empresa</h4>
+            <ul>
+              <li><a href="sobre.html">Sobre o GiroPro</a></li>
+              <li><a href="legal.html">Termos e Privacidade</a></li>
+              <li><a href="legal.html">Segurança Cibernética</a></li>
+              <li><a href="legal.html">Transparência de Dados</a></li>
+              <li><a href="sobre.html">Imprensa</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Suporte</h4>
+            <ul>
+              <li><a href="contato.html">Falar com Consultor</a></li>
+              <li><a href="contato.html">Comunidade VIP Telegram</a></li>
+              <li><a href="contato.html">Parcerias Estratégicas</a></li>
+              <li><a href="contato.html">Canal de Ética</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="fb-left">
+          <p>&copy; 2026 GiroPro Intelligence Systems. Todos os direitos reservados.</p>
+          <p class="footer-location">📍 Hub de Inovação — São Paulo, SP | Atendimento Nacional.</p>
+          <p style="font-size: 11px; margin-top: 8px; opacity: 0.6;">O uso deste software está sujeito aos termos de
+            serviço. Dados criptografados ponta-a-ponta.</p>
+        </div>
+        <div class="fb-right">
+          <div class="footer-trust">
+            <span class="trust-badge">🔒 AES-256 Encryption</span>
+            <span class="trust-badge">⚡ Ultra-Low Latency</span>
+          </div>
+          <p class="dev-credit">Arquitetado e desenvolvido por <strong>Rodrigo Henrique</strong></p>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+
+  <!-- ==================== LOGIN PAGE ==================== -->
+  <div id="login-page" class="page">
+    <div class="login-container">
+      <div class="login-card">
+        <div class="login-brand">
+          <div class="brand-logo" style="margin-bottom: 16px;">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2L20 7V17L12 22L4 17V7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+              <path d="M12 6V18M8 10L12 14L16 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </div>
+          <span class="brand-name" style="font-size: 28px;">Giro<span class="brand-name-accent">Pro</span></span>
+        </div>
+        <form class="login-form" onsubmit="handleLogin(event)">
+          <div class="form-group">
+            <label>E-mail</label>
+            <input type="email" id="login-email" placeholder="seu@email.com" value="demo@GiroPro.com" required />
+          </div>
+          <div class="form-group">
+            <label>Senha</label>
+            <input type="password" id="login-password" placeholder="••••••••" value="demo123" required />
+          </div>
+          <button type="submit" class="btn-primary full-width">Entrar na conta</button>
+          <div class="login-divider">ou</div>
+          <button type="button" class="btn-demo" onclick="handleDemoLogin()">
+            ⚡ Entrar com conta demo
+          </button>
+        </form>
+        <p class="login-footer">Não tem conta? <a href="#" onclick="handleDemoLogin()">Criar conta grátis</a></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== APP (AUTHENTICATED) ==================== -->
+  <div id="app-page" class="page">
+    <!-- Sidebar (Desktop) -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-brand">
+        <a href="index.html" class="nav-brand" style="padding: 0; background: transparent; border: none;">
+          <div class="brand-logo sm">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2L20 7V17L12 22L4 17V7L12 2Z" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round" />
+              <path d="M12 6V18M8 10L12 14L16 10" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </div>
+          <div class="brand-showcase sm">
+            <span class="brand-name sm">Giro<span class="brand-name-accent">Pro</span></span>
+            <span class="brand-tagline sm" style="font-size: 8px;">Intelligence</span>
+          </div>
+        </a>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="#" class="nav-item active" onclick="navigateTo('dashboard', this)">
+          <span class="nav-icon">📊</span>
+          <span class="nav-label">Dashboard</span>
+        </a>
+        <a href="#" class="nav-item" onclick="navigateTo('lancamentos', this)">
+          <span class="nav-icon">📋</span>
+          <span class="nav-label">Lançamentos</span>
+        </a>
+        <a href="#" class="nav-item" onclick="navigateTo('relatorios', this)">
+          <span class="nav-icon">📈</span>
+          <span class="nav-label">Relatórios</span>
+        </a>
+        <a href="#" class="nav-item" onclick="navigateTo('metas', this)">
+          <span class="nav-icon">🎯</span>
+          <span class="nav-label">Metas</span>
+        </a>
+        <a href="#" class="nav-item" onclick="navigateTo('simulador', this)">
+          <span class="nav-icon">🔬</span>
+          <span class="nav-label">Simulador</span>
+        </a>
+        <a href="turno.html" class="nav-item nav-item-turno">
+          <span class="nav-icon">▶</span>
+          <span class="nav-label">Turno ao Vivo</span>
+          <span class="nav-live-badge">LIVE</span>
+        </a>
+        <a href="#" class="nav-item" onclick="navigateTo('configuracoes', this)">
+          <span class="nav-icon">⚙️</span>
+          <span class="nav-label">Configurações</span>
+        </a>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="plan-indicator">
+          <span class="plan-badge-sidebar pro">PRO</span>
+          <span>Plano ativo</span>
+        </div>
+        <button class="btn-logout" onclick="handleLogout()">Sair</button>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <!-- Topbar -->
+      <header class="topbar">
+        <div class="topbar-left">
+          <button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
+          <h2 class="page-title" id="page-title">Dashboard</h2>
+        </div>
+        <div class="topbar-right">
+          <button class="theme-toggle" onclick="toggleTheme()" title="Alternar tema">
+            <span id="theme-icon">☀️</span>
+          </button>
+          <div class="user-avatar">JD</div>
+        </div>
+      </header>
+
+      <!-- Pages -->
+      <main class="content-area">
+
+        <!-- DASHBOARD -->
+        <div id="view-dashboard" class="view active">
+          <!-- Real Time Profit Engine CTA -->
+          <a href="turno.html" class="turno-cta-banner">
+            <div class="tcb-left">
+              <div class="tcb-live-dot"></div>
+              <div>
+                <div class="tcb-title">▶ Iniciar Turno ao Vivo</div>
+                <div class="tcb-sub">Copiloto financeiro em tempo real</div>
+              </div>
+            </div>
+            <span class="tcb-arrow">→</span>
+          </a>
+
+          <!-- Insight Banner -->
+          <div class="insight-banner" id="insight-banner">
+            <span class="insight-icon">🧠</span>
+            <span id="insight-text">Carregando insights...</span>
+          </div>
+
+          <!-- Alert Banners -->
+          <div id="alerts-container"></div>
+
+          <!-- KPI Cards -->
+          <div class="kpi-grid">
+            <div class="kpi-card">
+              <span class="kpi-label">Hoje</span>
+              <div class="kpi-value" id="kpi-receita-dia">R$ 0,00</div>
+              <div class="kpi-footer">
+                <span class="kpi-change positive" id="kpi-receita-dia-change">+0%</span>
+                <span class="kpi-trend">vs. ontem</span>
+              </div>
+            </div>
+            <div class="kpi-card">
+              <span class="kpi-label">Esta Semana</span>
+              <div class="kpi-value" id="kpi-receita-semana">R$ 0,00</div>
+              <div class="kpi-footer">
+                <span class="kpi-change positive" id="kpi-receita-semana-change">+0%</span>
+                <span class="kpi-trend">vs. anterior</span>
+              </div>
+            </div>
+            <div class="kpi-card">
+              <span class="kpi-label">Este Mês</span>
+              <div class="kpi-value" id="kpi-receita-mes">R$ 0,00</div>
+              <div class="kpi-footer">
+                <span class="kpi-change positive" id="kpi-receita-mes-change">+0%</span>
+                <span class="kpi-trend">meta batida?</span>
+              </div>
+            </div>
+            <div class="kpi-card highlight-accent">
+              <span class="kpi-label">Lucro Real</span>
+              <div class="kpi-value" id="kpi-lucro-real">R$ 0,00</div>
+              <div class="kpi-footer">
+                <span class="kpi-change" id="kpi-lucro-change">0%</span>
+                <span class="kpi-trend">líquido</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Differential Metrics -->
+          <div class="section-header">
+            <h3 class="section-title-sm">📊 Métricas Diferenciais</h3>
+            <span class="badge-pro">PRO</span>
+          </div>
+          <div class="metrics-grid">
+            <div class="metric-card">
+              <div class="metric-icon">⏱️</div>
+              <div class="metric-info">
+                <div class="metric-label">Ganho por Hora</div>
+                <div class="metric-value" id="metric-hora">R$ 0,00</div>
+              </div>
+              <div class="metric-status" id="metric-hora-status">—</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-icon">📍</div>
+              <div class="metric-info">
+                <div class="metric-label">Ganho por KM</div>
+                <div class="metric-value" id="metric-km">R$ 0,00</div>
+              </div>
+              <div class="metric-status" id="metric-km-status">—</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-icon">⛽</div>
+              <div class="metric-info">
+                <div class="metric-label">Custo por KM</div>
+                <div class="metric-value" id="metric-custo-km">R$ 0,00</div>
+              </div>
+              <div class="metric-status" id="metric-custo-status">—</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-icon">📱</div>
+              <div class="metric-info">
+                <div class="metric-label">Taxa dos Apps</div>
+                <div class="metric-value" id="metric-taxa">0%</div>
+              </div>
+              <div class="metric-status" id="metric-taxa-status">—</div>
+            </div>
+          </div>
+
+          <!-- Mini Charts Row -->
+          <div class="charts-row">
+            <div class="chart-card">
+              <h3 class="chart-title">Receita vs Despesas (Últimos 7 dias)</h3>
+              <div class="chart-wrapper">
+                <canvas id="chart-receita-despesas"></canvas>
+              </div>
+            </div>
+            <div class="chart-card">
+              <h3 class="chart-title">Receita por Aplicativo</h3>
+              <div class="chart-wrapper">
+                <canvas id="chart-apps"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Add -->
+          <div class="quick-add-section">
+            <h3 class="section-title-sm">⚡ Lançamento Rápido</h3>
+            <div class="quick-add-form">
+              <select id="quick-tipo" class="form-select">
+                <option value="receita">Receita</option>
+                <option value="despesa">Despesa</option>
+              </select>
+              <select id="quick-categoria" class="form-select">
+                <option value="uber">Uber</option>
+                <option value="99">99</option>
+                <option value="indrive">InDrive</option>
+                <option value="gorjeta">Gorjeta</option>
+                <option value="bonus">Bônus</option>
+                <option value="combustivel">Combustível</option>
+                <option value="manutencao">Manutenção</option>
+                <option value="outros">Outros</option>
+              </select>
+              <input type="number" id="quick-valor" class="form-input" placeholder="R$ 0,00" step="0.01" />
+              <input type="number" id="quick-km" class="form-input" placeholder="KM rodados" />
+              <button class="btn-primary" onclick="addQuickEntry()">+ Adicionar</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- LANÇAMENTOS -->
+        <div id="view-lancamentos" class="view">
+          <div class="view-header">
+            <h2>Lançamentos</h2>
+            <button class="btn-primary" onclick="openAddModal()">+ Novo Lançamento</button>
+          </div>
+
+          <!-- Summary Bar -->
+          <div class="summary-bar">
+            <div class="summary-item">
+              <span class="summary-label">Total Receitas</span>
+              <span class="summary-value green" id="total-receitas">R$ 0,00</span>
+            </div>
+            <div class="summary-item">
+              <span class="summary-label">Total Despesas</span>
+              <span class="summary-value red" id="total-despesas">R$ 0,00</span>
+            </div>
+            <div class="summary-item">
+              <span class="summary-label">Lucro Real</span>
+              <span class="summary-value" id="total-lucro">R$ 0,00</span>
+            </div>
+            <div class="summary-item">
+              <span class="summary-label">Depreciação</span>
+              <span class="summary-value orange" id="total-depreciacao">R$ 0,00</span>
+            </div>
+          </div>
+
+          <!-- Tabs -->
+          <div class="tab-bar">
+            <button class="tab active" onclick="switchTab('receitas', this)">💰 Receitas</button>
+            <button class="tab" onclick="switchTab('despesas-fixas', this)">📌 Despesas Fixas</button>
+            <button class="tab" onclick="switchTab('despesas-variaveis', this)">⛽ Despesas Variáveis</button>
+          </div>
+
+          <!-- Receitas Table -->
+          <div id="tab-receitas" class="tab-content active">
+            <div class="table-container">
+              <table class="data-table" id="table-receitas">
+                <thead>
+                  <tr>
+                    <th>Data</th>
+                    <th>Plataforma</th>
+                    <th>Descrição</th>
+                    <th>KM</th>
+                    <th>Horas</th>
+                    <th>Valor</th>
+                    <th>Ações</th>
+                  </tr>
+                </thead>
+                <tbody id="tbody-receitas">
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Despesas Fixas Table -->
+          <div id="tab-despesas-fixas" class="tab-content">
+            <div class="table-container">
+              <table class="data-table" id="table-despesas-fixas">
+                <thead>
+                  <tr>
+                    <th>Data</th>
+                    <th>Categoria</th>
+                    <th>Descrição</th>
+                    <th>Valor</th>
+                    <th>Ações</th>
+                  </tr>
+                </thead>
+                <tbody id="tbody-despesas-fixas">
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Despesas Variáveis Table -->
+          <div id="tab-despesas-variaveis" class="tab-content">
+            <div class="table-container">
+              <table class="data-table" id="table-despesas-variaveis">
+                <thead>
+                  <tr>
+                    <th>Data</th>
+                    <th>Categoria</th>
+                    <th>Descrição</th>
+                    <th>Valor</th>
+                    <th>Ações</th>
+                  </tr>
+                </thead>
+                <tbody id="tbody-despesas-variaveis">
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- RELATÓRIOS -->
+        <div id="view-relatorios" class="view">
+          <div class="view-header">
+            <div>
+              <h2 class="view-title">Insights de Performance 📊</h2>
+              <p class="view-subtitle">Análise detalhada do seu faturamento e custos operacionais</p>
+            </div>
+            <div style="display: flex; gap: 12px; align-items: center;">
+              <button class="btn-primary" onclick="generatePDF()"
+                style="background: var(--accent); color: #000; padding: 10px 20px; border: none; border-radius: 8px; font-weight: 800; cursor: pointer; display: flex; align-items: center; gap: 8px;">
+                <span>📄</span> Baixar PDF Pro
+              </button>
+              <select class="form-select" id="relatorio-periodo" onchange="updateCharts()"
+                style="min-width: 160px; height: 44px;">
+                <option value="7">Últimos 7 dias</option>
+                <option value="30" selected>Últimos 30 dias</option>
+                <option value="90">Últimos 90 dias</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Professional Report Header (Only for PDF) -->
+          <div id="report-pdf-header" class="report-pdf-header" style="display: none;">
+            <div class="rph-left">
+              <div class="brand-logo sm"
+                style="background: var(--accent); width: 42px; height: 42px; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #000; margin-right: 16px;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 2L20 7V17L12 22L4 17V7L12 2Z" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M12 6V18M8 10L12 14L16 10" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                    stroke-linejoin="round" />
+                </svg>
+              </div>
+              <div class="rph-title-box">
+                <h1 style="color: var(--text-primary); font-size: 24px; font-weight: 900; margin-bottom: 4px;">GiroPro
+                  <span style="color: var(--accent);">Performance Report</span>
+                </h1>
+                <p id="pdf-report-date" style="color: var(--text-secondary); font-size: 13px; font-weight: 600;">Data do
+                  Relatório: --/--/----</p>
+              </div>
+            </div>
+            <div class="rph-right" style="text-align: right;">
+              <div class="rph-badge"
+                style="background: var(--bg-secondary); border: 1px solid var(--accent); color: var(--accent); padding: 6px 16px; border-radius: 100px; font-weight: 800; font-size: 11px;">
+                PRO ACCOUNT</div>
+            </div>
+          </div>
+
+          <!-- Report Summary KPI's -->
+          <div class="report-summary-grid">
+            <div class="rs-card">
+              <span class="rs-label">Faturamento Período</span>
+              <span class="rs-value" id="rep-total-receita">R$ 0,00</span>
+            </div>
+            <div class="rs-card">
+              <span class="rs-label">Total de Despesas</span>
+              <span class="rs-value red" id="rep-total-despesa">R$ 0,00</span>
+            </div>
+            <div class="rs-card accent">
+              <span class="rs-label">Lucro Líquido Real</span>
+              <span class="rs-value" id="rep-total-lucro">R$ 0,00</span>
+            </div>
+            <div class="rs-card">
+              <span class="rs-label">Rentabilidade Horária</span>
+              <span class="rs-value orange" id="rep-avg-hora">R$ 0,00</span>
+            </div>
+          </div>
+
+          <div class="charts-full-grid">
+            <div class="chart-card full">
+              <h3 class="chart-title">📊 Receita vs Despesas</h3>
+              <div class="chart-wrapper tall">
+                <canvas id="chart-receita-despesas-full"></canvas>
+              </div>
+            </div>
+
+            <!-- AI INSIGHTS IN REPORT -->
+            <div class="report-insights-card">
+              <div class="ric-header">
+                <span class="ric-icon">🤖</span>
+                <h3>Análise Geográfica & Recomendações (GiroPro AI)</h3>
+              </div>
+              <div class="ric-content" id="report-ai-insights">
+                <div class="loading-pulse">Analisando sua performance...</div>
+              </div>
+            </div>
+
+            <div class="chart-card full">
+              <h3 class="chart-title">📈 Lucro ao Longo do Tempo</h3>
+              <div class="chart-wrapper tall">
+                <canvas id="chart-lucro-tempo"></canvas>
+              </div>
+            </div>
+            <div class="chart-card half">
+              <h3 class="chart-title">🚗 Receita por Aplicativo</h3>
+              <div class="chart-wrapper">
+                <canvas id="chart-apps-full"></canvas>
+              </div>
+            </div>
+            <div class="chart-card half">
+              <h3 class="chart-title">⏱️ Evolução do Ganho por Hora</h3>
+              <div class="chart-wrapper">
+                <canvas id="chart-ganho-hora"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- METAS -->
+        <div id="view-metas" class="view">
+          <div class="view-header">
+            <h2>Metas Financeiras</h2>
+          </div>
+
+          <div class="meta-setup-card">
+            <h3>🎯 Definir Meta Mensal</h3>
+            <div class="meta-form">
+              <div class="form-group">
+                <label>Quanto você quer ganhar por mês?</label>
+                <div class="input-prefix">
+                  <span>R$</span>
+                  <input type="number" id="meta-valor" placeholder="6000" value="6000" onchange="updateMeta()" />
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Dias que você pretende trabalhar no mês</label>
+                <input type="number" id="meta-dias" placeholder="22" value="22" onchange="updateMeta()"
+                  class="form-input" />
+              </div>
+              <button class="btn-primary" onclick="updateMeta()">Atualizar Meta</button>
+            </div>
+          </div>
+
+          <div class="meta-progress-card">
+            <div class="meta-header">
+              <div>
+                <h3>Progresso do Mês</h3>
+                <p id="meta-periodo">Fevereiro 2026</p>
+              </div>
+              <div class="meta-percentage" id="meta-percentage">0%</div>
+            </div>
+            <div class="progress-bar-container">
+              <div class="progress-bar" id="meta-progress-bar" style="width: 0%"></div>
+            </div>
+            <div class="meta-values">
+              <span>R$ <span id="meta-atual">0</span> conquistados</span>
+              <span>Meta: R$ <span id="meta-total">6.000</span></span>
+            </div>
+          </div>
+
+          <div class="meta-insights-grid">
+            <div class="meta-insight-card">
+              <div class="mi-icon">💰</div>
+              <div class="mi-label">Falta para a meta</div>
+              <div class="mi-value" id="meta-falta">R$ 0,00</div>
+            </div>
+            <div class="meta-insight-card">
+              <div class="mi-icon">📅</div>
+              <div class="mi-label">Dias restantes no mês</div>
+              <div class="mi-value" id="meta-dias-restantes">0</div>
+            </div>
+            <div class="meta-insight-card">
+              <div class="mi-icon">📊</div>
+              <div class="mi-label">Média diária necessária</div>
+              <div class="mi-value" id="meta-media-diaria">R$ 0,00</div>
+            </div>
+            <div class="meta-insight-card">
+              <div class="mi-icon">🔥</div>
+              <div class="mi-label">Sua média atual</div>
+              <div class="mi-value" id="meta-media-atual">R$ 0,00</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SIMULADOR -->
+        <div id="view-simulador" class="view">
+          <div class="view-header">
+            <h2>Simulador Financeiro</h2>
+            <span class="badge-pro">PRO</span>
+          </div>
+
+          <div class="simulador-grid">
+            <div class="simulador-card">
+              <h3>🚗 Comparador de Carros</h3>
+              <p class="sim-desc">Simule o impacto de trocar de carro no seu lucro mensal</p>
+
+              <div class="sim-columns">
+                <div class="sim-col">
+                  <h4>Carro Atual</h4>
+                  <div class="form-group">
+                    <label>Consumo (km/L)</label>
+                    <input type="number" id="sim-atual-consumo" value="10" class="form-input"
+                      onchange="calcularSimulador()" />
+                  </div>
+                  <div class="form-group">
+                    <label>KM rodados/mês</label>
+                    <input type="number" id="sim-atual-km" value="3000" class="form-input"
+                      onchange="calcularSimulador()" />
+                  </div>
+                  <div class="form-group">
+                    <label>Preço do combustível (R$/L)</label>
+                    <input type="number" id="sim-atual-combustivel" value="6.20" step="0.01" class="form-input"
+                      onchange="calcularSimulador()" />
+                  </div>
+                </div>
+                <div class="sim-col">
+                  <h4>Carro Novo</h4>
+                  <div class="form-group">
+                    <label>Consumo (km/L)</label>
+                    <input type="number" id="sim-novo-consumo" value="14" class="form-input"
+                      onchange="calcularSimulador()" />
+                  </div>
+                  <div class="form-group">
+                    <label>KM rodados/mês</label>
+                    <input type="number" id="sim-novo-km" value="3000" class="form-input"
+                      onchange="calcularSimulador()" />
+                  </div>
+                  <div class="form-group">
+                    <label>Preço do combustível (R$/L)</label>
+                    <input type="number" id="sim-novo-combustivel" value="6.20" step="0.01" class="form-input"
+                      onchange="calcularSimulador()" />
+                  </div>
+                </div>
+              </div>
+
+              <div class="sim-result" id="sim-result">
+                <div class="sim-result-row">
+                  <span>Custo combustível atual/mês:</span>
+                  <span id="sim-custo-atual" class="red">R$ 0,00</span>
+                </div>
+                <div class="sim-result-row">
+                  <span>Custo combustível novo/mês:</span>
+                  <span id="sim-custo-novo" class="green">R$ 0,00</span>
+                </div>
+                <div class="sim-result-row highlight">
+                  <span>💰 Economia mensal:</span>
+                  <span id="sim-economia" class="green bold">R$ 0,00</span>
+                </div>
+                <div class="sim-result-row">
+                  <span>Economia anual:</span>
+                  <span id="sim-economia-anual" class="green">R$ 0,00</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="simulador-card">
+              <h3>⏰ Simulador de Horário</h3>
+              <p class="sim-desc">Descubra qual horário é mais lucrativo para você</p>
+
+              <div class="form-group">
+                <label>Ganho médio por hora (atual)</label>
+                <input type="number" id="sim-ganho-hora" value="25" class="form-input" onchange="calcularHorario()" />
+              </div>
+              <div class="form-group">
+                <label>Horas trabalhadas por dia</label>
+                <input type="number" id="sim-horas-dia" value="8" class="form-input" onchange="calcularHorario()" />
+              </div>
+              <div class="form-group">
+                <label>Dias por mês</label>
+                <input type="number" id="sim-dias-mes" value="22" class="form-input" onchange="calcularHorario()" />
+              </div>
+              <div class="form-group">
+                <label>Se ganhar +20% por hora (horário dinâmico)</label>
+              </div>
+
+              <div class="sim-result" id="sim-result-horario">
+                <div class="sim-result-row">
+                  <span>Receita bruta atual/mês:</span>
+                  <span id="sim-receita-atual" class="yellow">R$ 0,00</span>
+                </div>
+                <div class="sim-result-row highlight">
+                  <span>💰 Receita com horário dinâmico:</span>
+                  <span id="sim-receita-dinamico" class="green bold">R$ 0,00</span>
+                </div>
+                <div class="sim-result-row">
+                  <span>Ganho extra mensal:</span>
+                  <span id="sim-ganho-extra" class="green">R$ 0,00</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CONFIGURAÇÕES -->
+        <div id="view-configuracoes" class="view">
+          <div class="view-header">
+            <h2>Configurações</h2>
+          </div>
+
+          <div class="config-grid">
+            <div class="config-card">
+              <h3>🚗 Dados do Veículo</h3>
+              <p>Configure seu carro para calcular a depreciação automática</p>
+              <div class="form-group">
+                <label>Valor do carro (R$)</label>
+                <input type="number" id="config-valor-carro" value="45000" class="form-input" onchange="saveConfig()" />
+              </div>
+              <div class="form-group">
+                <label>Vida útil estimada (anos)</label>
+                <input type="number" id="config-vida-util" value="5" class="form-input" onchange="saveConfig()" />
+              </div>
+              <div class="form-group">
+                <label>KM médio anual</label>
+                <input type="number" id="config-km-anual" value="36000" class="form-input" onchange="saveConfig()" />
+              </div>
+              <div class="config-result">
+                <span>Depreciação por KM:</span>
+                <span class="config-value" id="config-depreciacao-km">R$ 0,00/km</span>
+              </div>
+            </div>
+
+            <div class="config-card">
+              <h3>⛽ Combustível</h3>
+              <div class="form-group">
+                <label>Preço do combustível (R$/L)</label>
+                <input type="number" id="config-combustivel" value="6.20" step="0.01" class="form-input"
+                  onchange="saveConfig()" />
+              </div>
+              <div class="form-group">
+                <label>Consumo do carro (km/L)</label>
+                <input type="number" id="config-consumo" value="10" class="form-input" onchange="saveConfig()" />
+              </div>
+              <div class="config-result">
+                <span>Custo por KM (combustível):</span>
+                <span class="config-value" id="config-custo-km-comb">R$ 0,00/km</span>
+              </div>
+            </div>
+
+            <div class="config-card">
+              <h3>🎨 Aparência</h3>
+              <div class="form-group">
+                <label>Tema</label>
+                <div class="theme-options">
+                  <button class="theme-btn active" id="theme-dark-btn" onclick="setTheme('dark')">🌙 Dark</button>
+                  <button class="theme-btn" id="theme-light-btn" onclick="setTheme('light')">☀️ Light</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="config-card">
+              <h3>💎 Seu Plano</h3>
+              <div class="plan-current">
+                <div class="plan-badge-large pro">PRO</div>
+                <div>
+                  <p class="plan-name-lg">Plano PRO Ativo</p>
+                  <p class="plan-renewal">Renova em 18/03/2026</p>
+                </div>
+              </div>
+              <button class="btn-ghost full-width" onclick="alert('Gerenciamento de plano em breve!')">Gerenciar
+                Assinatura</button>
+            </div>
+          </div>
+        </div>
+
+      </main>
+    </div>
+
+    <!-- Bottom Nav (Mobile) -->
+    <nav class="bottom-nav">
+      <a href="#" class="bottom-nav-item active" onclick="navigateTo('dashboard', this)" id="bn-dashboard">
+        <span>📊</span>
+        <span>Dashboard</span>
+      </a>
+      <a href="#" class="bottom-nav-item" onclick="navigateTo('lancamentos', this)" id="bn-lancamentos">
+        <span>📋</span>
+        <span>Lançamentos</span>
+      </a>
+
+      <!-- Central Special Button -->
+      <a href="turno.html" class="bottom-nav-item nav-special">
+        <span>▶</span>
+        <span>Turno</span>
+      </a>
+
+      <a href="#" class="bottom-nav-item" onclick="navigateTo('relatorios', this)" id="bn-relatorios">
+        <span>📈</span>
+        <span>Relatórios</span>
+      </a>
+      <a href="#" class="bottom-nav-item" onclick="navigateTo('metas', this)" id="bn-metas">
+        <span>🎯</span>
+        <span>Metas</span>
+      </a>
+    </nav>
+  </div>
+
+  <!-- Add Entry Modal -->
+  <div id="modal-overlay" class="modal-overlay" onclick="closeModal()">
+    <div class="modal" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <h3>Novo Lançamento</h3>
+        <button class="modal-close" onclick="closeModal()">✕</button>
+      </div>
+      <form class="modal-form" onsubmit="saveEntry(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Tipo</label>
+            <select id="modal-tipo" class="form-select" onchange="updateModalCategories()">
+              <option value="receita">Receita</option>
+              <option value="despesa-fixa">Despesa Fixa</option>
+              <option value="despesa-variavel">Despesa Variável</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Data</label>
+            <input type="date" id="modal-data" class="form-input" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Categoria</label>
+          <select id="modal-categoria" class="form-select"></select>
+        </div>
+        <div class="form-group">
+          <label>Descrição (opcional)</label>
+          <input type="text" id="modal-descricao" class="form-input" placeholder="Ex: Corridas da manhã" />
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Valor (R$)</label>
+            <input type="number" id="modal-valor" class="form-input" step="0.01" placeholder="0,00" required />
+          </div>
+          <div class="form-group" id="modal-km-group">
+            <label>KM rodados</label>
+            <input type="number" id="modal-km" class="form-input" placeholder="0" />
+          </div>
+        </div>
+        <div class="form-group" id="modal-horas-group">
+          <label>Horas trabalhadas</label>
+          <input type="number" id="modal-horas" class="form-input" step="0.5" placeholder="0" />
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn-ghost" onclick="closeModal()">Cancelar</button>
+          <button type="submit" class="btn-primary">Salvar Lançamento</button>
+        </div>
+      </form>
+    </div>
+
+  </div>
+
+  <div id="toast" class="toast hidden"></div>
+  <script src="app.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,247 @@
+/* ==================== INTELLIGENCE SUITE UI ==================== */
+
+.intel-cockpit {
+    background: linear-gradient(135deg, #1a1a2e, #0f0f1a);
+    border: 1px solid rgba(99, 102, 241, 0.3);
+    border-radius: 20px;
+    padding: 20px;
+    margin-top: 24px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    animation: slideUp 0.5s ease-out;
+}
+
+.intel-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.intel-badge {
+    background: rgba(99, 102, 241, 0.2);
+    color: #818cf8;
+    padding: 4px 10px;
+    border-radius: 100px;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.intel-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+}
+
+.intel-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 400px) {
+    .intel-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.intel-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.ic-label {
+    font-size: 11px;
+    color: var(--text2);
+    font-weight: 600;
+}
+
+.ic-value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.ic-value.success {
+    color: var(--green);
+}
+
+.ic-value.warning {
+    color: var(--orange);
+}
+
+.ic-value.critical {
+    color: var(--red);
+}
+
+/* Advisor Alertas */
+.intel-advisor {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 16px;
+}
+
+.advisor-alert {
+    display: flex;
+    gap: 12px;
+    padding: 12px;
+    border-radius: 12px;
+    background: rgba(245, 158, 11, 0.1);
+    border-left: 4px solid var(--orange);
+    animation: fadeIn 0.3s ease;
+}
+
+.advisor-alert.CRITICAL {
+    background: rgba(239, 68, 68, 0.1);
+    border-left-color: var(--red);
+}
+
+.advisor-alert.LOW {
+    background: rgba(16, 185, 129, 0.1);
+    border-left-color: var(--green);
+}
+
+.aa-icon {
+    font-size: 18px;
+}
+
+.aa-content {
+    flex: 1;
+}
+
+.aa-message {
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.aa-action {
+    margin-top: 8px;
+    font-size: 12px;
+    color: var(--accent);
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+/* Prediction Indicator */
+.intel-prediction {
+    margin-top: 16px;
+    background: rgba(99, 102, 241, 0.05);
+    border-radius: 12px;
+    padding: 12px;
+    text-align: center;
+    border: 1px dashed rgba(99, 102, 241, 0.2);
+}
+
+.ip-text {
+    font-size: 12px;
+    color: var(--text2);
+}
+
+.ip-value {
+    font-weight: 800;
+    color: var(--accent);
+}
+
+/* Evaluator */
+.intel-evaluator {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.eval-inputs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.intel-input-sm {
+    flex: 1 1 100px;
+    min-width: 0;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 10px 12px;
+    color: var(--text);
+    font-size: 13px;
+    outline: none;
+    transition: var(--transition);
+}
+
+.intel-input-sm:focus {
+    border-color: var(--accent);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.intel-btn-eval {
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-size: 12px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: var(--transition);
+    white-space: nowrap;
+    flex: 1 1 auto;
+}
+
+.intel-btn-eval:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+}
+
+.intel-eval-result {
+    margin-top: 12px;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 10px;
+    animation: fadeIn 0.3s ease;
+}
+
+.eval-verdict {
+    font-size: 14px;
+    font-weight: 900;
+    margin-bottom: 2px;
+}
+
+.eval-recommendation {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 8px;
+    line-height: 1.3;
+}
+
+.eval-verdict.success {
+    color: var(--green);
+}
+
+.eval-verdict.warning {
+    color: var(--orange);
+}
+
+.eval-verdict.critical {
+    color: var(--red);
+}
+
+.eval-summary {
+    font-size: 11px;
+    color: var(--text2);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    padding-top: 8px;
+}
+
+.hidden {
+    display: none;
+}
